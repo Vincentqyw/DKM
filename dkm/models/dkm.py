@@ -5,9 +5,9 @@ from PIL import Image
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from dkm.utils import get_tuple_transform_ops
+from ..utils import get_tuple_transform_ops
 from einops import rearrange
-from dkm.utils.local_correlation import local_correlation
+from ..utils.local_correlation import local_correlation
 
 
 class ConvRefiner(nn.Module):
@@ -608,7 +608,7 @@ class RegressionMatcher(nn.Module):
         if "balanced" not in self.sample_mode:
             return good_matches, good_certainty
 
-        from dkm.utils.kde import kde
+        from ..utils.kde import kde
         density = kde(good_matches, std=0.1)
         p = 1 / (density+1)
         p[density < 10] = 1e-7 # Basically should have at least 10 perfect neighbours, or around 100 ok ones

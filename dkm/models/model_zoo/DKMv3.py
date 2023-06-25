@@ -1,8 +1,8 @@
 import torch
 
 from torch import nn
-from dkm.models.dkm import *
-from dkm.models.encoders import *
+from ..dkm import *
+from ..encoders import *
 
 
 def DKMv3(weights, h, w, symmetric = True, sample_mode= "threshold_balanced", device = None, **kwargs):

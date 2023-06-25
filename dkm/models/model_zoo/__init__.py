@@ -18,10 +18,10 @@ def DKMv3_outdoor(path_to_weights = None, device=None):
     if device is None:
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if path_to_weights is not None:
-        weights = torch.load(path_to_weights, map_location=device)
+        weights = torch.load(path_to_weights, map_location='cpu')
     else:
         weights = torch.hub.load_state_dict_from_url(weight_urls["DKMv3"]["outdoor"],
-                                                     map_location=device)
+                                                     map_location='cpu')
     return DKMv3(weights, 540, 720, upsample_preds = True, device=device)
 
 def DKMv3_indoor(path_to_weights = None, device=None):
